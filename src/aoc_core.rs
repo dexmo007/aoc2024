@@ -18,8 +18,8 @@ pub fn read_file(directory: &str, name: &str) -> String {
 pub type AocResult = Result<(), String>;
 
 pub trait AocTask {
-    fn run_a(&self, contents: String) -> AocResult;
-    fn run_b(&self, contents: String) -> AocResult;
+    fn solve_a(&self, contents: String) -> AocResult;
+    fn solve_b(&self, contents: String) -> AocResult;
 }
 
 #[derive(Debug)]
@@ -98,10 +98,10 @@ impl AocArgs {
             .get(ARG_INDEX_INPUT)
             .map(String::as_str)
             .unwrap_or("sample");
-        let input_file = match input_type {
-            "sample" => "sample.txt",
-            "input" => "input.txt",
-            s => s,
+        let input_file = match input_type.to_lowercase().as_str() {
+            "sample" | "s" => "sample.txt",
+            "input" | "i" => "input.txt",
+            _ => input_type,
         }
         .to_owned();
         Ok(AocArgs {
@@ -142,8 +142,8 @@ pub fn run(days: Vec<Box<dyn AocTask>>) {
     );
 
     match args.part {
-        TaskPart::A => day.run_a(contents),
-        TaskPart::B => day.run_b(contents),
+        TaskPart::A => day.solve_a(contents),
+        TaskPart::B => day.solve_b(contents),
     }
     .expect("Error running task")
 }

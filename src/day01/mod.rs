@@ -5,7 +5,7 @@ use std::{collections::HashMap, iter::zip};
 pub struct Day01;
 
 impl AocTask for Day01 {
-    fn run_a(&self, contents: String) -> AocResult {
+    fn solve_a(&self, contents: String) -> AocResult {
         let mut left = Vec::new();
         let mut right = Vec::new();
         for line in contents.lines() {
@@ -27,7 +27,7 @@ impl AocTask for Day01 {
         Ok(())
     }
 
-    fn run_b(&self, contents: String) -> AocResult {
+    fn solve_b(&self, contents: String) -> AocResult {
         let mut left: Vec<i32> = Vec::new();
         let mut right: Vec<i32> = Vec::new();
         for line in contents.lines() {
