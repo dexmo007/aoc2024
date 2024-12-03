@@ -115,13 +115,15 @@ impl AocArgs {
     }
 }
 
-pub fn run(days: Vec<Box<dyn AocTask>>) {
+pub fn run<D: IntoIterator<Item = Box<dyn AocTask>>>(days: D) {
+    let days = days.into_iter().collect::<Vec<_>>();
     let args = AocArgs::parse_args(days.len());
     if args.is_err() {
         println!("{}", args.unwrap_err());
         AocArgs::help();
         panic!()
     }
+
     let args = args.unwrap();
 
     println!(
