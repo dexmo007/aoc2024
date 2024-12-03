@@ -1,15 +1,14 @@
 use regex::Regex;
-use std::{
-    env,
-    fmt::Display,
-    fs,
-    path::{Path, PathBuf},
-    str::FromStr,
-    sync::LazyLock,
-};
+use std::{env, fmt::Display, fs, path::Path, str::FromStr, sync::LazyLock};
 
-pub fn read_file(directory: &str, name: &str) -> String {
-    let dir = PathBuf::from(directory);
+pub fn read_file(relative_to: &Path, name: &str) -> String {
+    let dir: &Path;
+    if relative_to.is_file() {
+        dir = relative_to.parent().unwrap();
+    } else {
+        dir = relative_to;
+    }
+
     let input_file_path = dir.join(name);
     let contents = fs::read_to_string(input_file_path).expect("Input file should be there");
     return contents;
@@ -136,8 +135,7 @@ pub fn run(days: Vec<Box<dyn AocTask>>) {
             .parent()
             .unwrap()
             .join(format!("day{:0>2}", args.day_number))
-            .to_str()
-            .unwrap(),
+            .as_path(),
         args.input.as_str(),
     );
 

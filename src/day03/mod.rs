@@ -1,3 +1,5 @@
+mod manual;
+
 use regex::{Captures, Regex};
 
 use crate::aoc_core::{AocResult, AocTask};
