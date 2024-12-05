@@ -41,8 +41,7 @@ impl AocTask for Day04 {
                 }
             }
         }
-        println!("Result: {}", occurances);
-        Ok(())
+        Ok(occurances as i64)
     }
 
     fn solve_b(&self, contents: String) -> AocResult {
@@ -73,7 +72,6 @@ impl AocTask for Day04 {
                 }
             }
         }
-        println!("Result: {}", occurances);
-        Ok(())
+        Ok(occurances as i64)
     }
 }

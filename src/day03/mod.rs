@@ -20,8 +20,7 @@ impl AocTask for Day03 {
             let (factor1, factor2) = parse_factors(capture);
             total += factor1 * factor2;
         }
-        println!("Sum of products: {}", total);
-        Ok(())
+        Ok(total as i64)
     }
 
     fn solve_b(&self, contents: String) -> AocResult {
@@ -55,7 +54,6 @@ impl AocTask for Day03 {
                 }
             }
         }
-        println!("Sum of products: {}", total);
-        Ok(())
+        Ok(total as i64)
     }
 }

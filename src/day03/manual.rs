@@ -79,8 +79,7 @@ impl AocTask for Day03Manual {
         let mut tokens = Vec::new();
         let mut scanner = Scanner::new(&contents, &mut tokens);
         scanner.scan();
-        println!("Result: {}", tokens.iter().map(|(x, y)| x * y).sum::<i32>());
-        Ok(())
+        Ok(tokens.iter().map(|(x, y)| (*x as i64) * (*y as i64)).sum())
     }
 
     fn solve_b(&self, _contents: String) -> crate::aoc_core::AocResult {

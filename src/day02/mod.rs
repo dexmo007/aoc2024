@@ -12,8 +12,7 @@ impl AocTask for Day02 {
                 safe_reports += 1;
             }
         }
-        println!("Number of safe reports: {}", safe_reports);
-        Ok(())
+        Ok(safe_reports as i64)
     }
 
     fn solve_b(&self, contents: String) -> AocResult {
@@ -32,8 +31,7 @@ impl AocTask for Day02 {
                 }
             }
         }
-        println!("Number of safe reports: {}", safe_reports);
-        Ok(())
+        Ok(safe_reports as i64)
     }
 }
 

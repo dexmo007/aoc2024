@@ -1,5 +1,13 @@
 use regex::Regex;
-use std::{env, fmt::Display, fs, path::Path, str::FromStr, sync::LazyLock};
+use std::{
+    env,
+    fmt::{Debug, Display},
+    fs,
+    path::Path,
+    str::FromStr,
+    sync::LazyLock,
+    time::Instant,
+};
 
 pub fn read_file(relative_to: &Path, name: &str) -> String {
     let dir: &Path;
@@ -14,7 +22,7 @@ pub fn read_file(relative_to: &Path, name: &str) -> String {
     return contents;
 }
 
-pub type AocResult = Result<(), String>;
+pub type AocResult = Result<i64, String>;
 
 pub trait AocTask {
     fn solve_a(&self, contents: String) -> AocResult;
@@ -141,9 +149,23 @@ pub fn run<D: IntoIterator<Item = Box<dyn AocTask>>>(days: D) {
         args.input.as_str(),
     );
 
-    match args.part {
-        TaskPart::A => day.solve_a(contents),
-        TaskPart::B => day.solve_b(contents),
+    let solver: Box<dyn Fn(String) -> AocResult> = match args.part {
+        TaskPart::A => Box::new(|c| day.solve_a(c)),
+        TaskPart::B => Box::new(|c| day.solve_b(c)),
+    };
+
+    let now = Instant::now();
+
+    let result = solver(contents);
+    let elapsed = now.elapsed();
+    println!("Ran {:?}", elapsed);
+
+    match result {
+        Ok(value) => {
+            println!("Result: {}", value);
+        }
+        Err(e) => {
+            panic!("{}", e)
+        }
     }
-    .expect("Error running task")
 }

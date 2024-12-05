@@ -23,8 +23,7 @@ impl AocTask for Day01 {
             let dist = (l - r).abs();
             total_dist += dist;
         }
-        println!("Total distance is: {}", total_dist);
-        Ok(())
+        Ok(total_dist as i64)
     }
 
     fn solve_b(&self, contents: String) -> AocResult {
@@ -50,7 +49,6 @@ impl AocTask for Day01 {
             let score = l * occ;
             similarity_score += score;
         }
-        println!("Similarity score is: {}", similarity_score);
-        Ok(())
+        Ok(similarity_score as i64)
     }
 }

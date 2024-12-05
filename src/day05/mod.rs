@@ -81,8 +81,7 @@ impl AocTask for Day05 {
                 result += updates.get(middle_index).unwrap();
             }
         }
-        println!("Result: {}", result);
-        Ok(())
+        Ok(result as i64)
     }
 
     fn solve_b(&self, contents: String) -> AocResult {
@@ -127,7 +126,6 @@ impl AocTask for Day05 {
             let middle_index = updates.len().div_ceil(2) - 1;
             result += updates.get(middle_index).unwrap();
         }
-        println!("Result: {}", result);
-        Ok(())
+        Ok(result as i64)
     }
 }
