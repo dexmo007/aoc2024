@@ -70,26 +70,22 @@ fn mark_visited_with_loop(
     (mut y, mut x): (usize, usize),
     mut direction: Direction,
 ) -> bool {
-    let mut did_just_turn = false;
     loop {
         match move_and_get(&map, y, x, direction.as_deltas()) {
             None => return false,
             Some((ny, nx, PositionType::Visited(mask))) => {
-                if did_just_turn && (mask & (1 << direction)) > 0 {
+                if (mask & (1 << direction)) > 0 {
                     return true;
                 }
                 map[ny][nx] = PositionType::Visited(mask | (1 << direction));
                 (y, x) = (ny, nx);
-                did_just_turn = false;
             }
             Some((_, _, PositionType::Obstruction)) => {
                 direction = direction.turn_90_deg();
-                did_just_turn = true;
             }
             Some((ny, nx, PositionType::Free)) => {
                 map[ny][nx] = PositionType::Visited(1 << direction);
                 (y, x) = (ny, nx);
-                did_just_turn = false;
             }
         }
     }
