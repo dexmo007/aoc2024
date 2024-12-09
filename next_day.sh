@@ -3,7 +3,7 @@ set -e pipefail
 
 most_recent_day=$(ls -d src/*/ | sed -rn 's/^src\/day(.*)\/$/\1/p' | xargs -n1 | sort -r | head -1)
 
-new_day=$(($most_recent_day + 1))
+new_day=$((10#$most_recent_day + 1))
 new_day=$(printf "%02d" $new_day)
 
 mkdir -p src/day$new_day
