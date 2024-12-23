@@ -9,6 +9,7 @@ regex = "1.11.1"
 aoc_register = { path = "./aoc_register" }
 ndarray = { version = "=0.15.2", features = ["blas", "approx", "std"] }
 ndarray-linalg = { version = "=0.16.0", features = ["openblas-static"] }
+lazy_static = "1.5.0"
 
 [workspace]
 members = ["aoc_register"]
