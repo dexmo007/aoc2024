@@ -2,6 +2,8 @@ use std::str::FromStr;
 
 use crate::aoc_core::{AocResult, AocTask};
 
+mod part_b;
+
 pub struct Day15;
 
 impl AocTask for Day15 {
@@ -27,8 +29,8 @@ impl AocTask for Day15 {
         Ok(result as i64)
     }
 
-    fn solve_b(&self, _contents: String) -> AocResult {
-        todo!()
+    fn solve_b(&self, contents: String) -> AocResult {
+        part_b::solve_b(contents)
     }
 }
 
